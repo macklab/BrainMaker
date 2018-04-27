@@ -18,4 +18,4 @@ bpy.ops.object.select_all(action = 'SELECT')
 bpy.ops.transform.rotate(value = 1.57, axis = (90, 0, 0))
 
 # Export as obj
-bpy.ops.export_scene.obj(filepath = 'PrintBrain.obj')
+bpy.ops.export_mesh.stl(filepath = 'PrintBrain.stl')
