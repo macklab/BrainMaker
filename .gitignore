@@ -1,0 +1,6 @@
+.DS_Store
+*.obj
+*.pial
+*.stl
+*.gcode
+*.mtl
