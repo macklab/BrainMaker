@@ -35,4 +35,4 @@ RUN mkdir slic3r && \
   tar -xzvf slic3r-* --strip-components=1 -C slic3r && \
   rm slic3r-*
 
-ENTRYPOINT ["BrainMaker.sh"]
+ENTRYPOINT ["BrainMaker/BrainMaker.sh"]
