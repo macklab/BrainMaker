@@ -46,5 +46,5 @@ ADD BrainMaker.ini /usr/local/BrainMaker.ini
 ADD license.txt /usr/local/freesurfer/license.txt
 RUN chmod +x /usr/local/BrainMaker.sh
 
-VOLUME /input
+VOLUME /files
 ENTRYPOINT ["/usr/local/BrainMaker.sh"]
