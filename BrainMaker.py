@@ -4,7 +4,7 @@ import sys
 
 # Get system argument
 output_dir = sys.argv
-output_dir = output_dir[output.index("--") + 1]
+output_dir = output_dir[output_dir.index("--") + 1]
 
 # Delete the default objects of the startup scene
 bpy.ops.object.select_all(action = 'SELECT')
