@@ -1,12 +1,17 @@
 import bpy
 import os
+import sys
+
+# Get system argument
+output_dir = sys.argv
+output_dir = output_dir[output.index("--") + 1]
 
 # Delete the default objects of the startup scene
 bpy.ops.object.select_all(action = 'SELECT')
 bpy.ops.object.delete(use_global = True)
 
 # Change working directory
-os.chdir('/files/')
+os.chdir(output_dir)
 
 # Import both hemispheres as stl's into blender
 bpy.ops.import_mesh.stl(filepath = 'lh.pial.stl')
