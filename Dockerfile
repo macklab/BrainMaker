@@ -11,7 +11,9 @@ RUN apt-get update && \
     libglu1 \
     libxi6 \
     libfreetype6 \
-    libxrender1
+    libxrender1 \
+    libgtk2.0-0 \
+    libsm6
 
 # The url to download blender
 ENV BLENDER_URL https://mirror.clarkson.edu/blender/release/Blender2.79/blender-2.79b-linux-glibc219-x86_64.tar.bz2
@@ -32,13 +34,13 @@ RUN mkdir /usr/local/freesurfer && \
   rm freesurfer-*
 
 # The url for slic3r
-ENV SLIC3R_URL https://dl.slic3r.org/linux/slic3r-linux-x86-1-2-9-stable.tar.gz
+ENV SLIC3R_URL https://github.com/prusa3d/Slic3r/releases/download/version_1.39.1/Slic3r-1.39.1-prusa3d-linux64-full-201803010854.tar.bz2
 
 # Download and unpack slic3r into its own directory
 RUN mkdir /usr/local/slic3r && \
   wget $SLIC3R_URL && \
-  tar -xzvf slic3r-* --strip-components=1 -C /usr/local/slic3r && \
-  rm slic3r-*
+  tar -jxvf Slic3r-* --strip-components=1 -C /usr/local/slic3r && \
+  rm Slic3r-*
 
 ADD BrainMaker.sh /usr/local/BrainMaker.sh
 ADD BrainMaker.py /usr/local/BrainMaker.py
