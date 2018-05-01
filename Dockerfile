@@ -8,7 +8,10 @@ RUN apt-get update && \
     tar \
     bzip2 \
     libgomp1 \
-    libglu1
+    libglu1 \
+    libxi6 \
+    libfreetype6 \
+    libxrender1
 
 # The url to download blender
 ENV BLENDER_URL https://mirror.clarkson.edu/blender/release/Blender2.79/blender-2.79b-linux-glibc219-x86_64.tar.bz2

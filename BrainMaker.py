@@ -1,4 +1,8 @@
 import bpy
+import os
+
+# Change working directory
+os.chdir('/input/')
 
 # Import both hemispheres as stl's into blender
 bpy.ops.import_mesh.stl(filepath = 'lh.pial.stl')
