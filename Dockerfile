@@ -49,5 +49,5 @@ ADD license.txt /usr/local/freesurfer/license.txt
 RUN chmod +x /usr/local/BrainMaker.sh
 
 VOLUME /data
-VOLUME /ouputs
+VOLUME /outputs
 ENTRYPOINT ["/usr/local/BrainMaker.sh"]
