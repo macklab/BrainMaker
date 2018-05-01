@@ -20,7 +20,7 @@ while [ "$1" != "" ]; do
     * )
       if [ -z $bids_dir ]
       then
-        input_dir=$1
+        bids_dir=$1
       elif [ -z $output_dir ]
       then
         output_dir=$1
