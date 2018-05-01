@@ -20,7 +20,7 @@ while [ "$1" != "" ]; do
     * )
       if [ -z $bids_dir ]
       then
-        bids_dir=$1
+        input_dir=$1
       elif [ -z $output_dir ]
       then
         output_dir=$1
@@ -34,13 +34,15 @@ while [ "$1" != "" ]; do
   shift
 done
 
+mkdir -p ${output_dir}/sub-${participant_label}
+surf=${bids_dir}/derivatives/freesurfer/sub-${participant_label}/surf/
 
-mris_convert $1 lh.pial.stl
-mris_convert $2 rh.pial.stl
+mris_convert ${surf}/lh.pial ${output_dir}/sub-${participant_label}/lh.pial.stl
+mris_convert ${surf}/rh.pial ${output_dir}/sub-${participant_label}/rh.pial.stl
 
 /usr/local/blender/blender --background -noaudio -Y --python usr/local/BrainMaker.py
 
-/usr/local/slic3r/slic3r /files/PrintBrain.stl \
+/usr/local/slic3r/slic3r ${output_dir}/sub-${participant_label}/PrintBrain.stl \
   --load /usr/local/BrainMaker.ini --scale 0.2 --layer-height 0.2 --fill-density 0% \
   --support-material-pattern honeycomb --raft-layers 2 \
   --support-material-buildplate-only yes
