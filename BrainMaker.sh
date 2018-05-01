@@ -37,8 +37,8 @@ done
 mkdir -p ${output_dir}/sub-${participant_label}
 surf=${bids_dir}/derivatives/freesurfer/sub-${participant_label}/surf/
 
-mris_convert ${surf}/lh.pial ${output_dir}/sub-${participant_label}/lh.pial.stl
-mris_convert ${surf}/rh.pial ${output_dir}/sub-${participant_label}/rh.pial.stl
+mris_convert ${surf}lh.pial ${output_dir}/sub-${participant_label}/lh.pial.stl
+mris_convert ${surf}rh.pial ${output_dir}/sub-${participant_label}/rh.pial.stl
 
 /usr/local/blender/blender --background -noaudio -Y \
   --python usr/local/BrainMaker.py -- ${output_dir}/sub-${participant_label}
