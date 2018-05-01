@@ -1,4 +1,12 @@
 import bpy
+import os
+
+# Delete the default objects of the startup scene
+bpy.ops.object.select_all(action = 'SELECT')
+bpy.ops.object.delete(use_global = True)
+
+# Change working directory
+os.chdir('/files/')
 
 # Import both hemispheres as stl's into blender
 bpy.ops.import_mesh.stl(filepath = 'lh.pial.stl')
