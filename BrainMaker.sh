@@ -20,7 +20,8 @@ while [ "$1" != "" ]; do
       ;;
     --fs_license )
       shift
-      DO SOMETHING WITH THE PARAMETER
+      fs_license=$1
+      echo $fs_license
       ;;
     * )
       if [ -z $bids_dir ]
@@ -40,7 +41,7 @@ while [ "$1" != "" ]; do
 done
 
 # Apply freesurfer license
-export 'FS_LICENSE'=fs_license
+cp $fs_license $FREESURFER_HOME/license.txt
 
 mkdir -p ${output_dir}/sub-${participant_label}
 surf=${bids_dir}/derivatives/freesurfer/sub-${participant_label}/surf/
