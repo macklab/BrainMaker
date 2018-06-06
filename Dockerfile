@@ -52,7 +52,6 @@ RUN mkdir /usr/local/slic3r && \
 ADD BrainMaker.sh /usr/local/BrainMaker.sh
 ADD BrainMaker.py /usr/local/BrainMaker.py
 ADD BrainMaker.ini /usr/local/BrainMaker.ini
-ADD license.txt /usr/local/freesurfer/license.txt
 RUN chmod +x /usr/local/BrainMaker.sh
 
 VOLUME /data

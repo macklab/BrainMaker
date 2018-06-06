@@ -4,6 +4,7 @@ source $FREESURFER_HOME/SetUpFreeSurfer.sh
 
 # Named arguments
 participant_label=
+fs_license=
 
 # Positional arguments
 bids_dir=
@@ -16,6 +17,10 @@ while [ "$1" != "" ]; do
     --participant_label )
       shift
       participant_label=$1
+      ;;
+    --fs_license )
+      shift
+      DO SOMETHING WITH THE PARAMETER
       ;;
     * )
       if [ -z $bids_dir ]
@@ -33,6 +38,9 @@ while [ "$1" != "" ]; do
   esac
   shift
 done
+
+# Apply freesurfer license
+export 'FS_LICENSE'=fs_license
 
 mkdir -p ${output_dir}/sub-${participant_label}
 surf=${bids_dir}/derivatives/freesurfer/sub-${participant_label}/surf/
