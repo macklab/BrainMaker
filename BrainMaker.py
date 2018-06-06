@@ -1,4 +1,5 @@
 import bpy
+import bmesh
 import os
 import sys
 
@@ -17,18 +18,20 @@ os.chdir(output_dir)
 bpy.ops.import_mesh.stl(filepath = 'lh.pial.stl')
 bpy.ops.import_mesh.stl(filepath = 'rh.pial.stl')
 
-# Select only the right hemisphere
-bpy.ops.object.select_all(action = 'DESELECT')
-bpy.data.objects['Rh.Pial'].select = True
+# Select only the right hemisphere and convert to bmesh
+obj = bpy.data.objects['Rh.Pial']
+bm = bmesh.new()
+bm.from_mesh(obj.data)
 
 # Translate the right hemisphere to ensure printability
-bpy.ops.transform.translate(value = (-2.0, 0.0, 0.0))
+bmesh.ops.translate(bm, vec = (-2.0, 0.0, 0.0), verts = bm.verts)
+
+# Convert bmesh back into mesh and update
+bm.to_mesh(obj.data)
+obj.data.update()
 
 # Select all for rotation then export
 bpy.ops.object.select_all(action = 'SELECT')
-
-# Rotate for slic3r
-bpy.ops.transform.rotate(value = 1.57, axis = (90, 0, 0))
 
 # Export as obj
 bpy.ops.export_mesh.stl(filepath = 'PrintBrain.stl')
