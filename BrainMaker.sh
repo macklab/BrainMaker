@@ -21,7 +21,6 @@ while [ "$1" != "" ]; do
     --fs_license )
       shift
       fs_license=$1
-      echo $fs_license
       ;;
     * )
       if [ -z $bids_dir ]
