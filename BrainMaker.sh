@@ -52,6 +52,4 @@ mris_convert ${surf}rh.pial ${output_dir}/sub-${participant_label}/rh.pial.stl
   --python usr/local/BrainMaker.py -- ${output_dir}/sub-${participant_label}
 
 /usr/local/slic3r/slic3r ${output_dir}/sub-${participant_label}/PrintBrain.stl \
-  --load /usr/local/BrainMaker.ini --scale 0.2 --layer-height 0.2 --fill-density 0% \
-  --support-material-pattern honeycomb --raft-layers 2 \
-  --support-material-buildplate-only
+  --load /usr/local/BrainMaker.ini
