@@ -5,6 +5,7 @@ source $FREESURFER_HOME/SetUpFreeSurfer.sh
 # Named arguments
 participant_label=
 fs_license=
+gcode_scale=0.2
 
 # Positional arguments
 bids_dir=
@@ -21,6 +22,10 @@ while [ "$1" != "" ]; do
     --fs_license )
       shift
       fs_license=$1
+      ;;
+    --gcode_scale )
+      shift
+      gcode_scale=$1
       ;;
     * )
       if [ -z $bids_dir ]
@@ -52,4 +57,4 @@ mris_convert ${surf}rh.pial ${output_dir}/sub-${participant_label}/rh.pial.stl
   --python usr/local/BrainMaker.py -- ${output_dir}/sub-${participant_label}
 
 /usr/local/slic3r/slic3r ${output_dir}/sub-${participant_label}/PrintBrain.stl \
-  --load /usr/local/BrainMaker.ini
+  --load /usr/local/BrainMaker.ini --scale $gcode_scale
