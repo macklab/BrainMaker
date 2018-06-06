@@ -4,7 +4,7 @@ FROM ubuntu:16.04
 # Update apt-get, not sure if I actually need this
 RUN apt-get update && \
   apt-get install -y \
-    wget \
+    curl \
     tar \
     bzip2 \
     libgomp1 \
@@ -20,27 +20,34 @@ ENV BLENDER_URL https://mirror.clarkson.edu/blender/release/Blender2.79/blender-
 
 # Download and unpack blender into its own directory
 RUN mkdir /usr/local/blender && \
-  wget $BLENDER_URL && \
-  tar -jxvf blender-* --strip-components=1 -C /usr/local/blender && \
-  rm blender-*
+  curl -ssL $BLENDER_URL | tar -jxv --strip-components=1 -C /usr/local/blender
 
 # The url for freesurfer
 ENV FREESURFER_URL ftp://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/6.0.0/freesurfer-Linux-centos6_x86_64-stable-pub-v6.0.0.tar.gz
 
 # Download and unpack freesurfer into its own directory
 RUN mkdir /usr/local/freesurfer && \
-  wget $FREESURFER_URL && \
-  tar -xzvf freesurfer-* --strip-components=1 -C /usr/local/freesurfer && \
-  rm freesurfer-*
+  curl -ssL $FREESURFER_URL | tar -xzv --strip-components=1 -C /usr/local/freesurfer \
+  --exclude='freesurfer/trctrain' \
+  --exclude='freesurfer/subjects/fsaverage_sym' \
+  --exclude='freesurfer/subjects/fsaverage3' \
+  --exclude='freesurfer/subjects/fsaverage4' \
+  --exclude='freesurfer/subjects/fsaverage5' \
+  --exclude='freesurfer/subjects/fsaverage6' \
+  --exclude='freesurfer/subjects/cvs_avg35' \
+  --exclude='freesurfer/subjects/cvs_avg35_inMNI152' \
+  --exclude='freesurfer/subjects/bert' \
+  --exclude='freesurfer/subjects/V1_average' \
+  --exclude='freesurfer/average/mult-comp-cor' \
+  --exclude='freesurfer/lib/cuda' \
+  --exclude='freesurfer/lib/qt'
 
 # The url for slic3r
 ENV SLIC3R_URL https://github.com/prusa3d/Slic3r/releases/download/version_1.39.1/Slic3r-1.39.1-prusa3d-linux64-full-201803010854.tar.bz2
 
 # Download and unpack slic3r into its own directory
 RUN mkdir /usr/local/slic3r && \
-  wget $SLIC3R_URL && \
-  tar -jxvf Slic3r-* --strip-components=1 -C /usr/local/slic3r && \
-  rm Slic3r-*
+  curl -ssL $SLIC3R_URL | tar -jxv --strip-components=1 -C /usr/local/slic3r
 
 ADD BrainMaker.sh /usr/local/BrainMaker.sh
 ADD BrainMaker.py /usr/local/BrainMaker.py
