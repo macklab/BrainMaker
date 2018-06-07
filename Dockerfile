@@ -50,8 +50,8 @@ RUN mkdir /usr/local/slic3r && \
   curl -ssL $SLIC3R_URL | tar -jxv --strip-components=1 -C /usr/local/slic3r
 
 ADD BrainMaker.sh /usr/local/BrainMaker.sh
-ADD BrainMaker.py /usr/local/BrainMaker.py
-ADD BrainMaker.ini /usr/local/BrainMaker.ini
+ADD blender_default.py /usr/local/blender_default.py
+ADD slicer_default.ini /usr/local/slicer_default.ini
 RUN chmod +x /usr/local/BrainMaker.sh
 
 VOLUME /data

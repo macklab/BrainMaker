@@ -54,7 +54,7 @@ mris_convert ${surf}lh.pial ${output_dir}/sub-${participant_label}/sub${particip
 mris_convert ${surf}rh.pial ${output_dir}/sub-${participant_label}/sub${participant_label}_rh.pial.stl
 
 /usr/local/blender/blender --background -noaudio -Y \
-  --python usr/local/BrainMaker.py -- ${output_dir}/sub-${participant_label} ${participant_label}
+  --python usr/local/blender_default.py -- ${output_dir}/sub-${participant_label} ${participant_label}
 
 /usr/local/slic3r/slic3r ${output_dir}/sub-${participant_label}/sub${participant_label}_PrintBrain.stl \
-  --load /usr/local/BrainMaker.ini --scale $gcode_scale
+  --load /usr/local/slicer_default.ini --scale $gcode_scale
