@@ -71,7 +71,7 @@ required arguments:
                              printable files.  
 
 optional arguments:  
- -h, -help                   Show this help message and exit.  
+ -h, --help                   Show this help message and exit.  
  --freesurfer_output_loc FREESURFER_OUTPUT_DIR  
                              The subdirectory within the BIDS directory where the  
                              participant's reconstructed surfaces are located.  
