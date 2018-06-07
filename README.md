@@ -102,7 +102,7 @@ docker run --rm -it \
   --freesurfer_output_loc derivatives/freesurfer/ \
   --blender_config blender.py \
   --slicer_config slicer.ini \
-  --slice true \
+  --skip_slice \
   --gcode_scale 0.1
 ```
 
