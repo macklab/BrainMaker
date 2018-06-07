@@ -11,7 +11,6 @@ slicer_config=/usr/local/slicer_default.ini
 # Positional arguments
 bids_dir=
 output_dir=
-level=
 
 # Assign arguments
 while [ "$1" != "" ]; do
