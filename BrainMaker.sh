@@ -2,16 +2,18 @@
 export FREESURFER_HOME=/usr/local/freesurfer
 source $FREESURFER_HOME/SetUpFreeSurfer.sh
 
+# Positional arguments
+bids_dir=
+output_dir=
+level=
+
 # Named arguments
 participant_label=
 gcode_scale=0.2
 blender_config=/usr/local/blender_default.py
 slicer_config=/usr/local/slicer_default.ini
 slice=true
-
-# Positional arguments
-bids_dir=
-output_dir=
+freesurfer_output_loc=${bids_dir}/derivatives/freesurfer/
 
 # Assign arguments
 while [ "$1" != "" ]; do
@@ -19,6 +21,10 @@ while [ "$1" != "" ]; do
     --participant_label )
       shift
       participant_label=$1
+      ;;
+    --freesurfer_output_loc )
+      shift
+      freesurfer_output_loc=$bids_dir/$1
       ;;
     --gcode_scale )
       shift
@@ -62,7 +68,7 @@ else
 fi
 
 mkdir -p ${output_dir}/sub-${participant_label}
-surf=${bids_dir}/derivatives/freesurfer/sub-${participant_label}/surf/
+surf=$freesurfer_output_loc/sub-${participant_label}/surf/
 
 mris_convert ${surf}lh.pial \
   ${output_dir}/sub-${participant_label}/sub${participant_label}_lh.pial.stl
