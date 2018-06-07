@@ -50,8 +50,37 @@ Slic3r, refer to the [manual](http://manual.slic3r.org/advanced/command-line).
 
 ### Usage
 BrainMaker has the following command line arguments:
-```Shell
+```
+usage: BrainMaker.sh [-h] bids_dir output_dir group  
+                    --participant_label PARTICIPANT_LABEL  
+                    [--freesurfer_output_loc FREESURFER_OUTPUT_DIR]  
+                    [--blender_config BLENDER_CONFIG] [--slicer_config SLICER_CONFIG]  
+                    [--gcode_scale SCALE] [--skip_slice]  
 
+Entry point shell script to generate printable 3D models from reconstructed surface.  
+
+positional arguments:  
+ bids_dir                    The directory with the input dataset formatted  
+                             according to the BIDS standard.  
+ output_dir                  The directory where the output files should be stored.  
+ group                       BrainMaker only allows for group level analysis.  
+
+required arguments:  
+ --participant_label PARTICIPANT_LABEL  
+                             The label for the participant to be converted into the  
+                             printable files.  
+
+optional arguments:  
+ -h, -help                   Show this help message and exit.  
+ --freesurfer_output_loc FREESURFER_OUTPUT_DIR  
+                             The subdirectory within the BIDS directory where the  
+                             participant's reconstructed surfaces are located.  
+ --blender_config BLENDER_CONFIG  
+                             The python script to run with Blender.  
+ --slicer_config SLICER_CONFIG  
+                             The configuration .ini file to generate G-Code with.  
+ --gcode_scale SCALE         A value between 0-1 to scale the model in the G-Code.  
+ --skip_slice                Skips the slicing step of the pipeline.  
 ```
 Basic usage:
 ```Shell
