@@ -12,7 +12,7 @@ participant_label=
 gcode_scale=0.2
 blender_config=/usr/local/blender_default.py
 slicer_config=/usr/local/slicer_default.ini
-slice=true
+skip_slice=false
 freesurfer_output_loc=${bids_dir}/derivatives/freesurfer/
 
 # Assign arguments
@@ -38,16 +38,15 @@ while [ "$1" != "" ]; do
       shift
       slicer_config=/configs/$1
       ;;
-    --slice )
-      shift
-      slice=$1
+    --skip_slice )
+      skip_slice=true
       ;;
-    --h )
-      echo "HELP"
-      exit
-      ;;
-    --help )
-      echo "HELP"
+    -h|--help )
+      echo "usage: BrainMaker.sh [-h] bids_dir output_dir participant"
+      echo "                     --participant_label PARTICIPANT_LABEL"
+      echo "                     [--freesurfer_output_loc FREESURFER_OUTPUT_DIR]"
+      echo "                     [--blender_config BLENDER_CONFIG] [--slicer_config SLICER_CONFIG]"
+      echo "                     [--gcode_scale SCALE] [--skip_slice]"
       exit
       ;;
     * )
@@ -95,11 +94,11 @@ echo 'Importing STLs into Blender for translation and export.'
   --python $blender_config \
   -- ${output_dir}/sub-${participant_label} ${participant_label}
 
-if $slice; then
+if $skip_slice; then
+  echo "Skipping Slic3r."
+else
   echo "Generating G-Code with Slic3r."
   /usr/local/slic3r/slic3r \
     ${output_dir}/sub-${participant_label}/sub${participant_label}_PrintBrain.stl \
     --load $slicer_config --scale $gcode_scale
-else
-  echo "Skipping Slic3r."
 fi
