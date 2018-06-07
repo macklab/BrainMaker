@@ -5,8 +5,8 @@ source $FREESURFER_HOME/SetUpFreeSurfer.sh
 # Named arguments
 participant_label=
 gcode_scale=0.2
-blender_config=
-slicer_config=
+blender_config=/usr/local/blender_default.py
+slicer_config=/usr/local/slicer_default.ini
 
 # Positional arguments
 bids_dir=
@@ -23,6 +23,14 @@ while [ "$1" != "" ]; do
     --gcode_scale )
       shift
       gcode_scale=$1
+      ;;
+    --blender_config )
+      shift
+      blender_config=/configs/$1
+      ;;
+    --slicer_config )
+      shift
+      slicer_config=/configs/$1
       ;;
     * )
       if [ -z $bids_dir ]
@@ -51,7 +59,7 @@ mris_convert ${surf}lh.pial ${output_dir}/sub-${participant_label}/sub${particip
 mris_convert ${surf}rh.pial ${output_dir}/sub-${participant_label}/sub${participant_label}_rh.pial.stl
 
 /usr/local/blender/blender --background -noaudio -Y \
-  --python usr/local/blender_default.py -- ${output_dir}/sub-${participant_label} ${participant_label}
+  --python $blender_config -- ${output_dir}/sub-${participant_label} ${participant_label}
 
 /usr/local/slic3r/slic3r ${output_dir}/sub-${participant_label}/sub${participant_label}_PrintBrain.stl \
-  --load /usr/local/slicer_default.ini --scale $gcode_scale
+  --load $slicer_config --scale $gcode_scale
