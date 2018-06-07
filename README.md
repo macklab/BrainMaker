@@ -76,3 +76,7 @@ docker run --rm -it \
   --slice true \
   --gcode_scale 0.1
 ```
+
+### Acknowledgement
+Please mention this Docker specifically by name with a link to this GitHub
+repository.
