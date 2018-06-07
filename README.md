@@ -4,8 +4,12 @@ Converts mri image to printable model
 Current code to run:
 ```
 docker run --rm \
-  -v $bidsdir:/data:ro \
-  -v $bidsdir/derivatives/BrainMaker/:/outputs \
-  brainmaker /data /outputs participant \
-  --participant_label $sbj
+  -v ~/Desktop/brainMakerTest/bids:/data:ro \
+  -v ~/Desktop/brainMakerTest/bids/derivatives/BrainMaker/:/outputs \
+  -v ~/Desktop/brainMakerTest/bids/code:/configs:ro \
+  brainmaker:latest /data /outputs \
+  participant \
+  --participant_label 001 \
+  --fs_license ~/Desktop/brainMakerTest/bids/code/license.txt \
+  --gcode_scale 0.1 \
 ```
