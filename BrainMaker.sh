@@ -42,6 +42,14 @@ while [ "$1" != "" ]; do
       shift
       slice=$1
       ;;
+    --h )
+      echo "HELP"
+      exit
+      ;;
+    --help )
+      echo "HELP"
+      exit
+      ;;
     * )
       if [ -z $bids_dir ]
       then
