@@ -90,7 +90,7 @@ docker run --m -it \
   -v /data/BrainMakerTest/bids:/data:ro \
   -v /data/BrainMakerTest/bids/derivatives/BrainMaker:/outputs \
   -v /data/BrainMakerTest/bids/code:/configs:ro \
-  macklab/brainmaker:latest /data /outputs participant
+  macklabuoft/brainmaker:latest /data /outputs participant
   --participant_label 001
 ```
 An example usage of using BrainMaker with all possible arguments:
@@ -99,7 +99,7 @@ docker run --rm -it \
   -v /data/BrainMakerTest/bids:/data:ro \
   -v /data/BrainMakerTest/bids/derivatives/BrainMaker:/outputs \
   -v /data/BrainMakerTest/bids/code:/configs:ro \
-  macklab/brainmaker:latest /data /outputs participant \
+  macklabuoft/brainmaker:latest /data /outputs participant \
   --participant_label 001 \
   --freesurfer_output_loc derivatives/freesurfer \
   --blender_config blender.py \
