@@ -67,6 +67,12 @@ while [ "$1" != "" ]; do
   shift
 done
 
+# Check if participant_label argument was assigned.
+if [ -z $participant_label ]; then
+  echo "Error: Missing --participant_label name-value argument"
+  exit 1
+fi
+
 # Apply freesurfer license if available, otherwise error out
 if [ -f /configs/license.txt ]; then
   cp /configs/license.txt $FREESURFER_HOME/license.txt
