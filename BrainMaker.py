@@ -7,8 +7,11 @@ import sys
 print('Importing STLs into Blender for translation and export.')
 
 # Get system argument
-output_dir = sys.argv
-output_dir = output_dir[output_dir.index("--") + 1]
+arguments = sys.argv
+output_dir = arguments[arguments.index("--") + 1]
+sbj = arguments[arguments.index('--') + 2]
+
+print(output_dir)
 
 # Delete the default objects of the startup scene
 bpy.ops.object.select_all(action = 'SELECT')
@@ -18,11 +21,11 @@ bpy.ops.object.delete(use_global = True)
 os.chdir(output_dir)
 
 # Import both hemispheres as stl's into blender
-bpy.ops.import_mesh.stl(filepath = 'lh.pial.stl')
-bpy.ops.import_mesh.stl(filepath = 'rh.pial.stl')
+bpy.ops.import_mesh.stl(filepath = 'sub' + sbj + '_lh.pial.stl')
+bpy.ops.import_mesh.stl(filepath = 'sub' + sbj + '_rh.pial.stl')
 
 # Select only the right hemisphere and convert to bmesh
-obj = bpy.data.objects['Rh.Pial']
+obj = bpy.data.objects['Sub' + sbj + ' Rh.Pial']
 bm = bmesh.new()
 bm.from_mesh(obj.data)
 
@@ -37,4 +40,4 @@ obj.data.update()
 bpy.ops.object.select_all(action = 'SELECT')
 
 # Export as obj
-bpy.ops.export_mesh.stl(filepath = 'PrintBrain.stl')
+bpy.ops.export_mesh.stl(filepath = 'sub' + sbj + '_PrintBrain.stl')

@@ -50,11 +50,11 @@ cp $fs_license $FREESURFER_HOME/license.txt
 mkdir -p ${output_dir}/sub-${participant_label}
 surf=${bids_dir}/derivatives/freesurfer/sub-${participant_label}/surf/
 
-mris_convert ${surf}lh.pial ${output_dir}/sub-${participant_label}/lh.pial.stl
-mris_convert ${surf}rh.pial ${output_dir}/sub-${participant_label}/rh.pial.stl
+mris_convert ${surf}lh.pial ${output_dir}/sub-${participant_label}/sub${participant_label}_lh.pial.stl
+mris_convert ${surf}rh.pial ${output_dir}/sub-${participant_label}/sub${participant_label}_rh.pial.stl
 
 /usr/local/blender/blender --background -noaudio -Y \
-  --python usr/local/BrainMaker.py -- ${output_dir}/sub-${participant_label}
+  --python usr/local/BrainMaker.py -- ${output_dir}/sub-${participant_label} ${participant_label}
 
-/usr/local/slic3r/slic3r ${output_dir}/sub-${participant_label}/PrintBrain.stl \
+/usr/local/slic3r/slic3r ${output_dir}/sub-${participant_label}/sub${participant_label}_PrintBrain.stl \
   --load /usr/local/BrainMaker.ini --scale $gcode_scale
