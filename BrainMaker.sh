@@ -93,7 +93,8 @@ while [ "$1" != "" ]; do
       then
         level=$1
       else
-        exit
+	echo "Invalid parameter:" $1 " Use the --help arugment for more information."
+        exit 1
       fi
   esac
   shift
