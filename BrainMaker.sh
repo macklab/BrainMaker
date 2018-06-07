@@ -55,11 +55,15 @@ cp /configs/license.txt $FREESURFER_HOME/license.txt
 mkdir -p ${output_dir}/sub-${participant_label}
 surf=${bids_dir}/derivatives/freesurfer/sub-${participant_label}/surf/
 
-mris_convert ${surf}lh.pial ${output_dir}/sub-${participant_label}/sub${participant_label}_lh.pial.stl
-mris_convert ${surf}rh.pial ${output_dir}/sub-${participant_label}/sub${participant_label}_rh.pial.stl
+mris_convert ${surf}lh.pial \
+  ${output_dir}/sub-${participant_label}/sub${participant_label}_lh.pial.stl
+mris_convert ${surf}rh.pial \
+  ${output_dir}/sub-${participant_label}/sub${participant_label}_rh.pial.stl
 
 /usr/local/blender/blender --background -noaudio -Y \
-  --python $blender_config -- ${output_dir}/sub-${participant_label} ${participant_label}
+  --python $blender_config \
+  -- ${output_dir}/sub-${participant_label} ${participant_label}
 
-/usr/local/slic3r/slic3r ${output_dir}/sub-${participant_label}/sub${participant_label}_PrintBrain.stl \
+/usr/local/slic3r/slic3r \
+  ${output_dir}/sub-${participant_label}/sub${participant_label}_PrintBrain.stl \
   --load $slicer_config --scale $gcode_scale
