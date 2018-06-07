@@ -53,8 +53,13 @@ while [ "$1" != "" ]; do
   shift
 done
 
-# Apply freesurfer license
-cp /configs/license.txt $FREESURFER_HOME/license.txt
+# Apply freesurfer license if available, otherwise error out
+if [ -f /configs/license.txt ]; then
+  cp /configs/license.txt $FREESURFER_HOME/license.txt
+else
+  echo "Error: Missing freesurfer license file! Place it in the volume mounted to /configs"
+  exit 1
+fi
 
 mkdir -p ${output_dir}/sub-${participant_label}
 surf=${bids_dir}/derivatives/freesurfer/sub-${participant_label}/surf/
@@ -68,7 +73,7 @@ mris_convert ${surf}rh.pial \
   --python $blender_config \
   -- ${output_dir}/sub-${participant_label} ${participant_label}
 
-if $slice 
+if $slice
 then
   /usr/local/slic3r/slic3r \
     ${output_dir}/sub-${participant_label}/sub${participant_label}_PrintBrain.stl \
