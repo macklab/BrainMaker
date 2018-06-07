@@ -42,11 +42,36 @@ while [ "$1" != "" ]; do
       skip_slice=true
       ;;
     -h|--help )
-      echo "usage: BrainMaker.sh [-h] bids_dir output_dir participant"
+      echo "usage: BrainMaker.sh [-h] bids_dir output_dir group"
       echo "                     --participant_label PARTICIPANT_LABEL"
       echo "                     [--freesurfer_output_loc FREESURFER_OUTPUT_DIR]"
       echo "                     [--blender_config BLENDER_CONFIG] [--slicer_config SLICER_CONFIG]"
       echo "                     [--gcode_scale SCALE] [--skip_slice]"
+      echo " "
+      echo "Entry point shell script to generate printable 3D models from reconstructed surface."
+      echo " "
+      echo "positional arguments:"
+      echo "  bids_dir                    The directory with the input dataset formatted"
+      echo "                              according to the BIDS standard."
+      echo "  output_dir                  The directory where the output files should be stored."
+      echo "  group                       BrainMaker only allows for group level analysis."
+      echo " "
+      echo "required arguments:"
+      echo "  --participant_label PARTICIPANT_LABEL"
+      echo "                              The label for the participant to be converted into the"
+      echo "                              printable files."
+      echo " "
+      echo "optional arguments:"
+      echo "  -h, -help                   Show this help message and exit."
+      echo "  --freesurfer_output_loc FREESURFER_OUTPUT_DIR"
+      echo "                              The subdirectory within the BIDS directory where the"
+      echo "                              participant's reconstructed surfaces are located."
+      echo "  --blender_config BLENDER_CONFIG"
+      echo "                              The python script to run with Blender."
+      echo "  --slicer_config SLICER_CONFIG"
+      echo "                              The configuration .ini file to generate G-Code with."
+      echo "  --gcode_scale SCALE         A value between 0-1 to scale the model in the G-Code."
+      echo "  --skip_slice                Skips the slicing step of the pipeline."
       exit
       ;;
     * )
