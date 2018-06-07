@@ -11,5 +11,6 @@ docker run --rm -it \
   --participant_label 001 \
   --blender_config blender.py \
   --slicer_config slicer.ini \
+  --slice true \
   --gcode_scale 0.1 \
 ```

@@ -7,6 +7,7 @@ participant_label=
 gcode_scale=0.2
 blender_config=/usr/local/blender_default.py
 slicer_config=/usr/local/slicer_default.ini
+slice=true
 
 # Positional arguments
 bids_dir=
@@ -30,6 +31,10 @@ while [ "$1" != "" ]; do
     --slicer_config )
       shift
       slicer_config=/configs/$1
+      ;;
+    --slice )
+      shift
+      slice=$1
       ;;
     * )
       if [ -z $bids_dir ]
@@ -63,6 +68,9 @@ mris_convert ${surf}rh.pial \
   --python $blender_config \
   -- ${output_dir}/sub-${participant_label} ${participant_label}
 
-/usr/local/slic3r/slic3r \
-  ${output_dir}/sub-${participant_label}/sub${participant_label}_PrintBrain.stl \
-  --load $slicer_config --scale $gcode_scale
+if $slice 
+then
+  /usr/local/slic3r/slic3r \
+    ${output_dir}/sub-${participant_label}/sub${participant_label}_PrintBrain.stl \
+    --load $slicer_config --scale $gcode_scale
+fi
