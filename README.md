@@ -22,7 +22,7 @@ A Freesurfer license is necessary, it should be placed in the volume mounted to
 It is expected that there are reconstructed surfaces available to convert into
 .stl files. Freesurfer's recon-all must be run before this docker. The recon-all
 outputs are, by default, expected to be placed inside a subject specific bids
-directory: `<{bids_dir}/derivatives/freesurfer/sbj_{ID}/surf/>`. The level of
+directory: `{bids_dir}/derivatives/freesurfer/sbj_{ID}/surf/`. The level of
 analysis will always be at the participant level, therefore, the participant
 label name-value argument is required.
 
