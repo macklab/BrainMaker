@@ -70,18 +70,22 @@ fi
 mkdir -p ${output_dir}/sub-${participant_label}
 surf=$freesurfer_output_loc/sub-${participant_label}/surf/
 
+echo "Converting lh.pial and rh.pial to .stl."
 mris_convert ${surf}lh.pial \
   ${output_dir}/sub-${participant_label}/sub${participant_label}_lh.pial.stl
 mris_convert ${surf}rh.pial \
   ${output_dir}/sub-${participant_label}/sub${participant_label}_rh.pial.stl
 
+echo 'Importing STLs into Blender for translation and export.'
 /usr/local/blender/blender --background -noaudio -Y \
   --python $blender_config \
   -- ${output_dir}/sub-${participant_label} ${participant_label}
 
-if $slice
-then
+if $slice; then
+  echo "Generating G-Code with Slic3r."
   /usr/local/slic3r/slic3r \
     ${output_dir}/sub-${participant_label}/sub${participant_label}_PrintBrain.stl \
     --load $slicer_config --scale $gcode_scale
+else
+  echo "Skipping Slic3r."
 fi

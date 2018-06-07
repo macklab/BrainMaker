@@ -3,9 +3,6 @@ import bmesh
 import os
 import sys
 
-# Print out for debugging
-print('Importing STLs into Blender for translation and export.')
-
 # Get system argument
 arguments = sys.argv
 output_dir = arguments[arguments.index("--") + 1]
