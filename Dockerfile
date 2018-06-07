@@ -1,7 +1,7 @@
 # Use Ubuntu 16.04
 FROM ubuntu:16.04
 
-# Update apt-get, not sure if I actually need this
+# Get Linux dependencies
 RUN apt-get update && \
   apt-get install -y \
     curl \
@@ -49,11 +49,15 @@ ENV SLIC3R_URL https://github.com/prusa3d/Slic3r/releases/download/version_1.39.
 RUN mkdir /usr/local/slic3r && \
   curl -ssL $SLIC3R_URL | tar -jxv --strip-components=1 -C /usr/local/slic3r
 
+# Add scripts to correct location
 ADD BrainMaker.sh /usr/local/BrainMaker.sh
 ADD blender_default.py /usr/local/blender_default.py
 ADD slicer_default.ini /usr/local/slicer_default.ini
+
+# Allow execution from this shell script
 RUN chmod +x /usr/local/BrainMaker.sh
 
+# Create volumes to be mounted
 VOLUME /data
 VOLUME /outputs
 VOLUME /configs

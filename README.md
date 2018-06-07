@@ -1,5 +1,5 @@
 ## BrainMaker
-BrainMaker converts reconstructed surfaces into a printable 3D model.
+BrainMaker converts reconstructed surfaces into a printable 3D models.
 
 ### Description
 BrainMaker will take a single participant's reconstructed surfaces and create
@@ -20,8 +20,8 @@ A Freesurfer license is necessary, it should be placed in the volume mounted to
 /configs.
 
 It is expected that there are reconstructed surfaces available to convert into
-.stl files. Freesurfer's recon-all must be run before this docker. The recon-all
-outputs are, by default, expected to be placed inside a subject specific bids
+.stl files. Freesurfer's recon-all must be run before this Docker. The recon-all
+outputs are, by default, expected to be placed inside a subject specific BIDS
 directory: `{bids_dir}/derivatives/freesurfer/sbj_{ID}/surf/`. The level of
 analysis will always be at the participant level, therefore, the participant
 label name-value argument is required.
@@ -33,8 +33,8 @@ Prusa i3 MK2S printer.
 
 The Blender python script imports .stl files for manipulation and output using
 the bpy and bmesh modules. These modules are built into Blender and do not
-require further dependencies. However, these modules do not exist independently
-to Blender and therefore must be tested using Blender. A custom Blender python
+require further dependencies. However, these modules do not function independently
+from Blender and therefore must be tested using Blender. A custom Blender python
 script must accept and output a similar format of .stl files. For more
 information on these modules, refer to the
 [documentation](https://docs.blender.org/api/2.79/).
@@ -44,18 +44,18 @@ instructions. It should be noted that Slic3r only generates G-Code files and
 some printers require other formats. The automated slicing can be disabled in
 this case. As the default configuration file was built with the Prusa i3 MK2S
 printer in mind, the generated G-Code may not be usable for some printers.
-Slic3r is highly configurable for many printers, using the its GUI to generate a
-customized configuration.ini file is recommended. For more information on
+Slic3r is highly configurable for many printers, using its GUI to generate a
+customized configuration file is recommended. For more information on
 Slic3r, refer to the [manual](http://manual.slic3r.org/advanced/command-line).
 
 ### Usage
 BrainMaker has the following command line arguments:
 ```
-usage: BrainMaker.sh [-h] bids_dir output_dir group  
-                    --participant_label PARTICIPANT_LABEL  
-                    [--freesurfer_output_loc FREESURFER_OUTPUT_DIR]  
-                    [--blender_config BLENDER_CONFIG] [--slicer_config SLICER_CONFIG]  
-                    [--gcode_scale SCALE] [--skip_slice]  
+usage: BrainMaker.sh [-h] bids_dir output_dir participant  
+                     --participant_label PARTICIPANT_LABEL  
+                     [--freesurfer_output_loc FREESURFER_OUTPUT_DIR]  
+                     [--blender_config BLENDER_CONFIG] [--slicer_config SLICER_CONFIG]  
+                     [--gcode_scale SCALE] [--skip_slice]  
 
 Entry point shell script to generate printable 3D models from reconstructed surface.  
 
@@ -63,15 +63,15 @@ positional arguments:
  bids_dir                    The directory with the input dataset formatted  
                              according to the BIDS standard.  
  output_dir                  The directory where the output files should be stored.  
- group                       BrainMaker only allows for group level analysis.  
+ participant                 BrainMaker only allows for participant level analysis.  
 
 required arguments:  
  --participant_label PARTICIPANT_LABEL  
-                             The label for the participant to be converted into the  
+                             The label for the participant's data to be used to create
                              printable files.  
 
 optional arguments:  
- -h, --help                   Show this help message and exit.  
+ -h, --help                  Show this help message and exit.  
  --freesurfer_output_loc FREESURFER_OUTPUT_DIR  
                              The subdirectory within the BIDS directory where the  
                              participant's reconstructed surfaces are located.  
@@ -85,18 +85,18 @@ optional arguments:
 Basic usage:
 ```Shell
 docker run --m -it \
-  -v ~/Desktop/brainMakerTest/bids:/data:ro \
-  -v ~/Desktop/brainMakerTest/bids/derivatives/BrainMaker/:/outputs \
-  -v ~/Desktop/brainMakerTest/bids/code:/configs:ro \
+  -v /data/BrainMakerTest/bids:/data:ro \
+  -v /data/BrainMakerTest/bids/derivatives/BrainMaker/:/outputs \
+  -v /data/BrainMakerTest/bids/code:/configs:ro \
   brainmaker:latest /data /outputs participant
   --participant_label 001
 ```
 An example usage of using BrainMaker with all possible arguments:
 ```Shell
 docker run --rm -it \
-  -v ~/Desktop/brainMakerTest/bids:/data:ro \
-  -v ~/Desktop/brainMakerTest/bids/derivatives/BrainMaker/:/outputs \
-  -v ~/Desktop/brainMakerTest/bids/code:/configs:ro \
+  -v /data/BrainMakerTest/bids:/data:ro \
+  -v /data/BrainMakerTest/bids/derivatives/BrainMaker/:/outputs \
+  -v /data/BrainMakerTest/bids/code:/configs:ro \
   brainmaker:latest /data /outputs participant \
   --participant_label 001 \
   --freesurfer_output_loc derivatives/freesurfer/ \
@@ -107,5 +107,5 @@ docker run --rm -it \
 ```
 
 ### Acknowledgement
-Please mention this Docker specifically by name with a link to this GitHub
+Please mention this Docker specifically by name with a link to our GitHub
 repository.
