@@ -15,7 +15,7 @@ gcode_scale=0.2
 blender_config=/usr/local/blender_default.py
 slicer_config=/usr/local/slicer_default.ini
 skip_slice=false
-freesurfer_output_loc=${bids_dir}/derivatives/freesurfer/
+freesurfer_output_loc=derivatives/freesurfer
 
 # Config default tracker
 blender_default=true
@@ -30,7 +30,7 @@ while [ "$1" != "" ]; do
       ;;
     --freesurfer_output_loc )
       shift
-      freesurfer_output_loc=$bids_dir/$1
+      freesurfer_output_loc=$1
       ;;
     --gcode_scale )
       shift
@@ -114,7 +114,7 @@ else
 fi
 
 mkdir -p ${output_dir}/sub-${participant_label}
-surf=$freesurfer_output_loc/sub-${participant_label}/surf/
+surf=$bids_dir/$freesurfer_output_loc/sub-${participant_label}/surf/
 
 echo "Converting lh.pial and rh.pial to .stl files."
 mris_convert ${surf}lh.pial \

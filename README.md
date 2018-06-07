@@ -88,20 +88,20 @@ Basic usage:
 ```Shell
 docker run --m -it \
   -v /data/BrainMakerTest/bids:/data:ro \
-  -v /data/BrainMakerTest/bids/derivatives/BrainMaker/:/outputs \
+  -v /data/BrainMakerTest/bids/derivatives/BrainMaker:/outputs \
   -v /data/BrainMakerTest/bids/code:/configs:ro \
-  brainmaker:latest /data /outputs participant
+  macklab/brainmaker:latest /data /outputs participant
   --participant_label 001
 ```
 An example usage of using BrainMaker with all possible arguments:
 ```Shell
 docker run --rm -it \
   -v /data/BrainMakerTest/bids:/data:ro \
-  -v /data/BrainMakerTest/bids/derivatives/BrainMaker/:/outputs \
+  -v /data/BrainMakerTest/bids/derivatives/BrainMaker:/outputs \
   -v /data/BrainMakerTest/bids/code:/configs:ro \
-  brainmaker:latest /data /outputs participant \
+  macklab/brainmaker:latest /data /outputs participant \
   --participant_label 001 \
-  --freesurfer_output_loc derivatives/freesurfer/ \
+  --freesurfer_output_loc derivatives/freesurfer \
   --blender_config blender.py \
   --slicer_config slicer.ini \
   --skip_slice \
