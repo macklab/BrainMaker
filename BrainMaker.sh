@@ -4,8 +4,9 @@ source $FREESURFER_HOME/SetUpFreeSurfer.sh
 
 # Named arguments
 participant_label=
-fs_license=
 gcode_scale=0.2
+blender_config=
+slicer_config=
 
 # Positional arguments
 bids_dir=
@@ -18,10 +19,6 @@ while [ "$1" != "" ]; do
     --participant_label )
       shift
       participant_label=$1
-      ;;
-    --fs_license )
-      shift
-      fs_license=$1
       ;;
     --gcode_scale )
       shift
@@ -45,7 +42,7 @@ while [ "$1" != "" ]; do
 done
 
 # Apply freesurfer license
-cp $fs_license $FREESURFER_HOME/license.txt
+cp /configs/license.txt $FREESURFER_HOME/license.txt
 
 mkdir -p ${output_dir}/sub-${participant_label}
 surf=${bids_dir}/derivatives/freesurfer/sub-${participant_label}/surf/

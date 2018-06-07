@@ -56,4 +56,6 @@ RUN chmod +x /usr/local/BrainMaker.sh
 
 VOLUME /data
 VOLUME /outputs
+VOLUME /configs
+
 ENTRYPOINT ["/usr/local/BrainMaker.sh"]

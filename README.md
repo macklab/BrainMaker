@@ -10,6 +10,6 @@ docker run --rm \
   brainmaker:latest /data /outputs \
   participant \
   --participant_label 001 \
-  --fs_license ~/Desktop/brainMakerTest/bids/code/license.txt \
+  --fs_license /configs/license.txt \
   --gcode_scale 0.1 \
 ```
