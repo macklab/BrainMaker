@@ -8,8 +8,6 @@ arguments = sys.argv
 output_dir = arguments[arguments.index("--") + 1]
 sbj = arguments[arguments.index('--') + 2]
 
-print(output_dir)
-
 # Delete the default objects of the startup scene
 bpy.ops.object.select_all(action = 'SELECT')
 bpy.ops.object.delete(use_global = True)
