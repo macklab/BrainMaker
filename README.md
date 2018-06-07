@@ -1,7 +1,7 @@
 ## BrainMaker
 BrainMaker converts reconstructed surfaces into a printable 3D models.
 
-![Photo of a printed brain](https://drive.google.com/file/d/1TMhm8bLX335iIASc7brc2COh7UCkGHY-/preview)
+![Photo of a printed brain](https://lh3.googleusercontent.com/Clf9fm0SasAW8ZMhyjQdeyQ8QsjdSYOli_BE7LCd9QmIW6xvKJnnuIOgI6yTL3ZLjwi71r1Dt1-rLQ=w2736-h1632-rw)
 
 ### Description
 BrainMaker will take a single participant's reconstructed surfaces and create
