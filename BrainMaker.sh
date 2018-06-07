@@ -62,7 +62,7 @@ while [ "$1" != "" ]; do
       echo "                              printable files."
       echo " "
       echo "optional arguments:"
-      echo "  -h, -help                   Show this help message and exit."
+      echo "  -h, --help                   Show this help message and exit."
       echo "  --freesurfer_output_loc FREESURFER_OUTPUT_DIR"
       echo "                              The subdirectory within the BIDS directory where the"
       echo "                              participant's reconstructed surfaces are located."
