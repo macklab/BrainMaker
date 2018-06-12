@@ -86,11 +86,11 @@ optional arguments:
 ```
 Basic usage:
 ```Shell
-docker run --m -it \
+docker run --rm -it \
   -v /data/BrainMakerTest/bids:/data:ro \
   -v /data/BrainMakerTest/bids/derivatives/BrainMaker:/outputs \
   -v /data/BrainMakerTest/bids/code:/configs:ro \
-  macklabuoft/brainmaker:latest /data /outputs participant
+  macklabuoft/brainmaker:latest /data /outputs participant \
   --participant_label 001
 ```
 An example usage of using BrainMaker with all possible arguments:
