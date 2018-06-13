@@ -1,7 +1,4 @@
-#!/bin/bash
-export FREESURFER_HOME=/usr/local/freesurfer
-source $FREESURFER_HOME/SetUpFreeSurfer.sh
-
+#!/bin/bash 
 # Positional arguments
 bids_dir=
 output_dir=

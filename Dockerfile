@@ -57,6 +57,10 @@ ADD slicer_default.ini /usr/local/slicer_default.ini
 # Allow execution from this shell script
 RUN chmod +x /usr/local/BrainMaker.sh
 
+# Setup freesurfer
+ENV FREESURFER_HOME /usr/local/freesurfer
+ENV PATH $FREESURFER_HOME/bin:$PATH
+
 # Create volumes to be mounted
 VOLUME /data
 VOLUME /outputs
